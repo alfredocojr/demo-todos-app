@@ -7,7 +7,7 @@ from jsonschema import validate
 
 def load_app_module():
     repo_root = pathlib.Path(__file__).resolve().parents[3]
-    app_path = repo_root / "demos" / "openapi" / "app.py"
+    app_path = repo_root / "app.py"
     spec = importlib.util.spec_from_file_location("demo_app", str(app_path))
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
@@ -16,7 +16,7 @@ def load_app_module():
 
 def load_spec():
     repo_root = pathlib.Path(__file__).resolve().parents[3]
-    spec_path = repo_root / "demos" / "openapi" / "spec.yaml"
+    spec_path = repo_root / "spec.yaml"
     with open(spec_path) as f:
         return yaml.safe_load(f)
 
