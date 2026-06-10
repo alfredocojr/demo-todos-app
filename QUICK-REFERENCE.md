@@ -8,7 +8,6 @@ Fast commands for running each demo without reading full documentation.
 
 ### Setup
 ```bash
-cd demos/openapi
 python -m venv venv
 source venv/bin/activate  # Windows: venv\Scripts\activate
 pip install -r requirements.txt -r requirements-dev.txt
@@ -116,7 +115,7 @@ cat .semgrep.yml | grep -E "id:|severity:" | head -20
 ### Create Vulnerable Code
 ```bash
 # Create file with intentional issues
-cp demos/openapi/app.py demos/openapi/app_vulnerable.py
+cp app.py app_vulnerable.py
 
 # Edit and add:
 # - Hardcoded secret: API_KEY = "sk_live_abc123"
@@ -130,21 +129,18 @@ cp demos/openapi/app.py demos/openapi/app_vulnerable.py
 ```bash
 pip install semgrep
 
-cd demos/openapi
 semgrep --config ../../.semgrep.yml app_vulnerable.py --json
 # Should find 5+ issues
 ```
 
 ### Scan with pip-audit
 ```bash
-cd demos/openapi
 pip-audit --desc
 # Shows CVEs in dependencies
 ```
 
 ### Secret Detection
 ```bash
-cd demos/openapi
 detect-secrets scan . --all-files --json | jq '.results'
 # Shows hardcoded secrets
 ```
@@ -154,7 +150,6 @@ detect-secrets scan . --all-files --json | jq '.results'
 # Install Trivy (if needed)
 # brew install aquasecurity/trivy/trivy
 
-cd demos/openapi
 docker build -t api-demo:test .
 
 trivy image api-demo:test --severity HIGH,CRITICAL
@@ -190,7 +185,7 @@ git checkout -b feature/payment-processing
 # - Storing card numbers in logs
 # - Missing type hints
 
-git add demos/openapi/payment_handler.py
+git add payment_handler.py
 git commit -m "feat: add payment processing"
 git push origin feature/payment-processing
 ```
@@ -213,7 +208,7 @@ git push origin feature/payment-processing
 # - Secure logging (no sensitive data)
 # - Error handling with try/except
 
-git add demos/openapi/payment_handler_fixed.py
+git add payment_handler_fixed.py
 git commit -m "fix: address AI code review findings"
 git push origin feature/payment-processing
 ```
@@ -382,7 +377,7 @@ kubectl port-forward svc/prometheus-server 9090:80 -n monitor
 kubectl port-forward svc/todos-demo 8000:80 -n default
 
 # Terminal T4: Local Flask dev
-python demos/openapi/app.py  # Runs on 8080
+python app.py  # Runs on 8080
 ```
 
 ---

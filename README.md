@@ -71,7 +71,6 @@ python --version        # Should be 3.11+
 pip --version
 
 # Verify you can clone and navigate
-cd demos/openapi
 ls -la                  # See app.py, spec.yaml, requirements.txt, tests/
 ```
 
@@ -95,7 +94,6 @@ tests/
 Create an isolated Python environment:
 
 ```bash
-cd demos/openapi/
 
 # Create virtual environment
 python -m venv venv
@@ -328,7 +326,6 @@ Keep the server running and open a new terminal:
 
 ```bash
 # Activate venv in the new terminal
-cd demos/openapi
 source venv/bin/activate
 
 # Test health check

@@ -32,7 +32,7 @@ Use these checklists to prepare for live demonstrations. Each demo should be reh
 **Check all demo prerequisites:**
 ```bash
 # Demo 1: OpenAPI
-cd demos/openapi && python --version && pip list | grep -E "flask|pytest"
+python --version && pip list | grep -E "flask|pytest"
 
 # Demo 2: GitOps  
 kubectl get applications -n argo-cd | wc -l  # Should show 7+ apps
@@ -54,9 +54,9 @@ Expected output: All commands succeed, no errors
 ## Demo 1: SDD com OpenAPI (15 minutes)
 
 ### Pre-Demo Checklist
-- [ ] Flask API code reviewed (`demos/openapi/app.py`)
-- [ ] OpenAPI spec readable (`cat demos/openapi/spec.yaml`)
-- [ ] Tests passing locally (`pytest demos/openapi/tests/`)
+- [ ] Flask API code reviewed (`app.py`)
+- [ ] OpenAPI spec readable (`cat spec.yaml`)
+- [ ] Tests passing locally (`pytest tests/`)
 - [ ] Know the 3 API endpoints: GET /todos, POST /todos, GET /ready
 - [ ] Have curl commands copied to clipboard for quick access
 - [ ] Understand why SDD matters (spec-first development)
@@ -75,7 +75,7 @@ Expected output: All commands succeed, no errors
 
 ### Backup Plan
 If Flask doesn't start:
-- [ ] Pre-build Docker image (`docker build -t api-demo:local demos/openapi/`)
+- [ ] Pre-build Docker image (`docker build -t api-demo:local`)
 - [ ] Run in container instead (`docker run -p 8080:8080 api-demo:local`)
 
 ---
@@ -127,7 +127,7 @@ If self-healing takes too long:
 - [ ] **Step 3** (1 min): Show .semgrep.yml with all rules
 - [ ] **Step 4** (2 min): Create/show vulnerable code file
 - [ ] **Step 5** (3 min): Run local Semgrep scan
-  - [ ] `semgrep --config .semgrep.yml demos/openapi/app_vulnerable.py`
+  - [ ] `semgrep --config .semgrep.yml app_vulnerable.py`
   - [ ] Show 5+ findings (SQL injection, eval, secrets, etc.)
 - [ ] **Step 6** (2 min): Run pip-audit to find CVEs
   - [ ] `pip-audit` (or force demo by showing old requirements)

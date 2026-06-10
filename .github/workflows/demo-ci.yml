@@ -47,11 +47,11 @@ jobs:
           pip install -r requirements.txt
           pip install -r requirements-dev.txt
       - name: Check Python formatting with Ruff
-        run: ruff format --config pyproject.toml --check demos/openapi
+        run: ruff format --config pyproject.toml --check .
       - name: Lint with Ruff
-        run: ruff check --config pyproject.toml demos/openapi
+        run: ruff check --config pyproject.toml .
       - name: Run pytest with coverage
-        run: pytest -q tests --cov=demos/openapi --cov-report=term-missing --cov-fail-under=80
+        run: pytest -q tests --cov=. --cov-report=term-missing --cov-fail-under=80
 
   security:
     needs: test
@@ -75,7 +75,7 @@ jobs:
       - name: Run pip audit
         run: pip-audit --desc
       - name: Scan for secrets
-        run: detect-secrets scan demos/openapi
+        run: detect-secrets scan .
       - name: Run Semgrep
         uses: returntocorp/semgrep-action@v1
         with:

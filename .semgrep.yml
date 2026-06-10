@@ -1,4 +1,4 @@
-# Semgrep config for demos/openapi/
+# Semgrep config for todos-app demo
 # This configuration applies security scanning only to the OpenAPI demo codebase
 
 rules:
