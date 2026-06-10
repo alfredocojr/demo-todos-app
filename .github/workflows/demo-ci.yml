@@ -1,4 +1,4 @@
-name: Demo CI (tests + semgrep)
+name: Demo CI
 
 on:
   pull_request:
